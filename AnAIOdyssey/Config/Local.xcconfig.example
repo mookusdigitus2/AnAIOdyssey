@@ -1,0 +1,5 @@
+// Copy to Local.xcconfig (git-ignored) and fill in your own values.
+BUNDLE_ID_PREFIX = com.yourcompany
+DEVELOPMENT_TEAM = YOURTEAMID
+// Your project homepage ("$()" stops "//" from starting a comment).
+PROJECT_HOMEPAGE_URL = https:/$()/your.site/your-app

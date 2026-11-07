@@ -1,0 +1,21 @@
+369
+From: alerts@service.com
+To: recipient@example.com
+Subject: Weekly Digest
+Date: Thu, 20 Jun 2026 08:30:00 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="BOUND"
+
+--BOUND
+Content-Type: text/plain; charset=utf-8
+
+Plain digest summary.
+
+--BOUND
+Content-Type: text/html; charset=utf-8
+
+<html><body><p>HTML digest summary.</p></body></html>
+--BOUND--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict><key>flags</key><integer>0</integer></dict></plist>

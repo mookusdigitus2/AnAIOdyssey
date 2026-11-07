@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+//
+// Signing and identifier settings for An AI Odyssey.
+//
+// The public source ships with neutral placeholders. To build for a device,
+// copy Local.xcconfig.example to Local.xcconfig (git-ignored) and set your own
+// Apple Developer Team ID and reverse-DNS bundle-ID prefix there.
+
+// Reverse-DNS prefix for every bundle ID and the iCloud container.
+BUNDLE_ID_PREFIX = com.example
+
+// Your Apple Developer Team ID (leave empty for simulator-only builds).
+DEVELOPMENT_TEAM =
+
+// Project homepage sent for attribution (OpenRouter's HTTP-Referer and the
+// DuckDuckGo user agent). It reaches the app through Info.plist and is read
+// by AIProjectHomepage. "$()" keeps xcconfig from treating "//" as a comment.
+PROJECT_HOMEPAGE_URL = https:/$()/example.com/an-ai-odyssey
+
+#include? "Local.xcconfig"

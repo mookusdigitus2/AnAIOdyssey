@@ -1,0 +1,12 @@
+211
+From: sender@example.com
+To: recipient@example.com
+Subject: Fixture Test Email
+Date: Wed, 19 Jun 2026 12:00:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello from the fixture email body.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict><key>flags</key><integer>0</integer></dict></plist>

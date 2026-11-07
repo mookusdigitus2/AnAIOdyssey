@@ -1,0 +1,227 @@
+{
+  "app": {
+    "files": [
+      "anaiodyssey-LICENSE.txt",
+      "anaiodyssey-LICENSE.appstore.txt"
+    ],
+    "id": "anaiodyssey",
+    "license": "AGPL-3.0-or-later",
+    "name": "An AI Odyssey"
+  },
+  "packages": [
+    {
+      "files": [
+        "aiconnect-LICENSE.txt"
+      ],
+      "id": "aiconnect",
+      "license": "MIT",
+      "linked": true,
+      "name": "AIConnect (AIConnect, AIConnectUI, AIModelOptions)",
+      "note": ""
+    },
+    {
+      "files": [
+        "aiconnectvoice-LICENSE.txt"
+      ],
+      "id": "aiconnectvoice",
+      "license": "MIT",
+      "linked": true,
+      "name": "AIConnectVoice",
+      "note": ""
+    },
+    {
+      "files": [
+        "odysseus-LICENSE.txt"
+      ],
+      "id": "odysseus",
+      "license": "MIT",
+      "linked": true,
+      "name": "Odysseus v1.0 (adapted prompt and tool-format text)",
+      "note": "https://github.com/pewdiepie-archdaemon/odysseus at commit e5c99a5e."
+    },
+    {
+      "files": [
+        "eventsource-LICENSE.txt"
+      ],
+      "id": "eventsource",
+      "license": "MIT",
+      "linked": true,
+      "name": "EventSource",
+      "note": "",
+      "url": "https://github.com/mattt/EventSource.git",
+      "vendored": [],
+      "version": "1.5.1"
+    },
+    {
+      "files": [
+        "mlx-swift-LICENSE.txt",
+        "mlx-swift-mlx-LICENSE.txt",
+        "mlx-swift-mlxc-LICENSE.txt",
+        "mlx-swift-metalcpp-LICENSE.txt",
+        "mlx-swift-fmt-LICENSE.txt",
+        "mlx-swift-nlohmannjson-LICENSE.txt"
+      ],
+      "id": "mlx-swift",
+      "license": "MIT",
+      "linked": true,
+      "name": "mlx-swift",
+      "note": "Includes MLX, mlx-c, metal-cpp, {fmt} and nlohmann/json, compiled into the app.",
+      "url": "https://github.com/ml-explore/mlx-swift",
+      "vendored": [
+        {
+          "license": "MIT",
+          "name": "MLX"
+        },
+        {
+          "license": "MIT",
+          "name": "mlx-c"
+        },
+        {
+          "license": "Apache-2.0",
+          "name": "metal-cpp"
+        },
+        {
+          "license": "MIT",
+          "name": "{fmt}"
+        },
+        {
+          "license": "MIT",
+          "name": "nlohmann/json"
+        }
+      ],
+      "version": "0.31.6"
+    },
+    {
+      "files": [
+        "mlx-swift-lm-LICENSE.txt"
+      ],
+      "id": "mlx-swift-lm",
+      "license": "MIT",
+      "linked": true,
+      "name": "mlx-swift-lm",
+      "note": "",
+      "url": "https://github.com/ml-explore/mlx-swift-lm",
+      "vendored": [],
+      "version": "2.31.3"
+    },
+    {
+      "files": [
+        "swift-argument-parser-LICENSE.txt"
+      ],
+      "id": "swift-argument-parser",
+      "license": "Apache-2.0",
+      "linked": false,
+      "name": "swift-argument-parser",
+      "note": "Resolved for mlx-swift's command-line tools; not linked into the app.",
+      "url": "https://github.com/apple/swift-argument-parser",
+      "vendored": [],
+      "version": "1.8.2"
+    },
+    {
+      "files": [
+        "swift-asn1-LICENSE.txt",
+        "swift-asn1-NOTICE.txt"
+      ],
+      "id": "swift-asn1",
+      "license": "Apache-2.0",
+      "linked": false,
+      "name": "swift-asn1",
+      "note": "Resolved for swift-crypto's _CryptoExtras; not linked into the app.",
+      "url": "https://github.com/apple/swift-asn1.git",
+      "vendored": [],
+      "version": "1.7.2"
+    },
+    {
+      "files": [
+        "swift-collections-LICENSE.txt"
+      ],
+      "id": "swift-collections",
+      "license": "Apache-2.0",
+      "linked": true,
+      "name": "swift-collections",
+      "note": "",
+      "url": "https://github.com/apple/swift-collections.git",
+      "vendored": [],
+      "version": "1.6.0"
+    },
+    {
+      "files": [
+        "swift-crypto-LICENSE.txt",
+        "swift-crypto-NOTICE.txt"
+      ],
+      "id": "swift-crypto",
+      "license": "Apache-2.0",
+      "linked": true,
+      "name": "swift-crypto",
+      "note": "On Apple platforms the Crypto module is a thin layer over Apple's CryptoKit. Its vendored BoringSSL and XKCP sources are only compiled for Linux, Android, Windows, WASI and OpenBSD, so they are not part of the app.",
+      "url": "https://github.com/apple/swift-crypto.git",
+      "vendored": [],
+      "version": "4.5.2"
+    },
+    {
+      "files": [
+        "swift-huggingface-LICENSE.txt"
+      ],
+      "id": "swift-huggingface",
+      "license": "Apache-2.0",
+      "linked": true,
+      "name": "swift-huggingface",
+      "note": "",
+      "url": "https://github.com/huggingface/swift-huggingface.git",
+      "vendored": [],
+      "version": "0.10.0"
+    },
+    {
+      "files": [
+        "swift-jinja-LICENSE.txt"
+      ],
+      "id": "swift-jinja",
+      "license": "Apache-2.0",
+      "linked": true,
+      "name": "swift-jinja",
+      "note": "",
+      "url": "https://github.com/huggingface/swift-jinja.git",
+      "vendored": [],
+      "version": "2.5.0"
+    },
+    {
+      "files": [
+        "swift-numerics-LICENSE.txt"
+      ],
+      "id": "swift-numerics",
+      "license": "Apache-2.0",
+      "linked": true,
+      "name": "swift-numerics",
+      "note": "",
+      "url": "https://github.com/apple/swift-numerics",
+      "vendored": [],
+      "version": "1.1.1"
+    },
+    {
+      "files": [
+        "swift-transformers-LICENSE.txt"
+      ],
+      "id": "swift-transformers",
+      "license": "Apache-2.0",
+      "linked": true,
+      "name": "swift-transformers",
+      "note": "",
+      "url": "https://github.com/huggingface/swift-transformers",
+      "vendored": [],
+      "version": "1.2.1"
+    },
+    {
+      "files": [
+        "yyjson-LICENSE.txt"
+      ],
+      "id": "yyjson",
+      "license": "MIT",
+      "linked": true,
+      "name": "yyjson",
+      "note": "",
+      "url": "https://github.com/ibireme/yyjson.git",
+      "vendored": [],
+      "version": "0.12.0"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+# SPDX-License-Identifier: MIT
+# Standalone Xcode project for the AIConnect packages. Generate with
+# `xcodegen generate`. The Swift packages in AIConnect/ and AIModelOptions/
+# remain the source of truth; this project compiles the same sources as
+# frameworks and runs the same tests.
+name: AIConnect
+options:
+  bundleIdPrefix: com.example.aiconnect
+  deploymentTarget:
+    iOS: "17.0"
+    macOS: "14.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    GENERATE_INFOPLIST_FILE: YES
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_TESTABILITY: YES
+
+targets:
+  AIModelOptions:
+    type: framework
+    supportedDestinations: [iOS, macOS]
+    sources:
+      - path: AIModelOptions/Sources/AIModelOptions
+  AIConnect:
+    type: framework
+    supportedDestinations: [iOS, macOS]
+    sources:
+      - path: AIConnect/Sources/AIConnect
+    dependencies:
+      - target: AIModelOptions
+  AIConnectUI:
+    type: framework
+    supportedDestinations: [iOS, macOS]
+    sources:
+      - path: AIConnect/Sources/AIConnectUI
+    dependencies:
+      - target: AIConnect
+      - target: AIModelOptions
+  AIModelOptionsTests:
+    type: bundle.unit-test
+    supportedDestinations: [iOS, macOS]
+    sources:
+      - path: AIModelOptions/Tests/AIModelOptionsTests
+    dependencies:
+      - target: AIModelOptions
+  AIConnectTests:
+    type: bundle.unit-test
+    supportedDestinations: [iOS, macOS]
+    sources:
+      - path: AIConnect/Tests/AIConnectTests
+    dependencies:
+      - target: AIConnect
+      - target: AIModelOptions
+
+schemes:
+  AIConnect:
+    build:
+      targets:
+        AIModelOptions: all
+        AIConnect: all
+        AIConnectUI: all
+    test:
+      targets:
+        - AIModelOptionsTests
+        - AIConnectTests

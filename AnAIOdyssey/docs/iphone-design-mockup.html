@@ -1,0 +1,420 @@
+<title>An AI Odyssey for iPhone — Aegean design proposal</title>
+<style>
+  :root{
+    --ground:#0F1522; --panel:#171F2E; --panel2:#1D2839;
+    --ink:#E6EBF2; --muted:#8A97A8; --line:#26334A;
+    --accent:#35C4DC; --accent-deep:#0094AD; --violet:#A78BFA;
+    --ok:#4ADE80; --warn:#FB923C;
+    /* app tokens — light */
+    --l-bg:#F5F7FA; --l-surface:#FFFFFF; --l-label:#101828; --l-sec:#5B6B7F;
+    --l-sep:#E3E8EF; --l-accent:#007A93; --l-fill:#0094AD; --l-violet:#6D4AE0;
+    /* app tokens — dark */
+    --d-bg:#0D1420; --d-surface:#16202F; --d-label:#E9EEF5; --d-sec:#93A1B4;
+    --d-sep:#243146; --d-accent:#35C4DC; --d-violet:#A78BFA;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--ground)}
+  body{
+    font-family:var(--sans);color:var(--ink);background:var(--ground);
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:56px 28px 96px}
+
+  /* ---------- header ---------- */
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:10px 0 14px;text-wrap:balance}
+  h1 .thin{color:var(--muted);font-weight:600}
+  .lede{max-width:62ch;color:var(--muted);font-size:16.5px}
+  .lede b{color:var(--ink);font-weight:600}
+
+  h2{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 18px}
+  section{margin-top:72px}
+  .rule{height:1px;background:var(--line);margin-top:72px}
+
+  /* ---------- phone row ---------- */
+  .phones{display:flex;gap:34px;overflow-x:auto;padding:44px 6px 20px;align-items:flex-start;scrollbar-width:thin}
+  .phone-col{flex:0 0 auto;width:272px}
+  .phone-cap{margin-top:16px;font-size:13px;color:var(--muted)}
+  .phone-cap b{display:block;color:var(--ink);font-weight:650;font-size:13.5px;margin-bottom:2px}
+
+  .phone{
+    width:272px;height:576px;border-radius:44px;background:#050810;
+    border:1px solid #2A3650;box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 0 8px #0A0F1A;
+    overflow:hidden;position:relative;display:flex;flex-direction:column;
+  }
+  .screen{flex:1;display:flex;flex-direction:column;overflow:hidden;font-size:11.5px}
+  .screen.light{background:var(--l-bg);color:var(--l-label)}
+  .screen.dark{background:var(--d-bg);color:var(--d-label)}
+
+  .statusbar{display:flex;justify-content:space-between;align-items:center;padding:12px 22px 4px;font-size:11px;font-weight:650}
+  .island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:78px;height:22px;border-radius:12px;background:#000;z-index:5}
+  .sb-right{display:flex;gap:4px;align-items:center}
+  .sb-right svg{display:block}
+
+  .navbar{padding:10px 16px 8px;display:flex;align-items:flex-end;justify-content:space-between}
+  .large-title{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#35C4DC,#6D4AE0);display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700}
+
+  .searchpill{margin:2px 16px 10px;border-radius:10px;padding:7px 10px;display:flex;align-items:center;gap:6px;font-size:11.5px}
+  .light .searchpill{background:#E9EEF4;color:var(--l-sec)}
+  .dark .searchpill{background:#1C2839;color:var(--d-sec)}
+
+  .content{flex:1;overflow:hidden;padding:0 12px;display:flex;flex-direction:column;gap:8px}
+
+  .card{border-radius:12px;padding:10px 12px}
+  .light .card{background:var(--l-surface);box-shadow:0 1px 2px rgba(16,24,40,.06)}
+  .dark .card{background:var(--d-surface)}
+
+  .row-title{font-weight:650;font-size:12px;display:flex;align-items:center;gap:6px}
+  .row-sub{font-size:10.5px;margin-top:2px}
+  .light .row-sub{color:var(--l-sec)} .dark .row-sub{color:var(--d-sec)}
+  .row-meta{font-size:9.5px;font-variant-numeric:tabular-nums;margin-left:auto;font-weight:500}
+  .light .row-meta{color:var(--l-sec)} .dark .row-meta{color:var(--d-sec)}
+
+  .badge{font-size:8.5px;font-weight:700;letter-spacing:.05em;padding:2px 6px;border-radius:6px;text-transform:uppercase}
+  .badge.agent{color:#fff;background:var(--l-violet)}
+  .dark .badge.agent{background:var(--d-violet);color:#141024}
+  .badge.pin{color:var(--l-accent);background:#DDF0F4}
+
+  /* tab bar */
+  .tabbar{display:flex;justify-content:space-around;align-items:center;padding:8px 8px 18px;border-top:1px solid}
+  .light .tabbar{background:rgba(249,251,253,.94);border-color:var(--l-sep)}
+  .dark .tabbar{background:rgba(16,24,38,.94);border-color:var(--d-sep)}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:8.5px;font-weight:600;min-width:44px}
+  .light .tab{color:#93A1B1} .dark .tab{color:#5F6E84}
+  .light .tab.on{color:var(--l-accent)} .dark .tab.on{color:var(--d-accent)}
+  .tab svg{display:block}
+
+  /* chat detail */
+  .chat-nav{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--d-sep)}
+  .chat-nav .back{color:var(--d-accent);font-size:15px;font-weight:600}
+  .chat-nav .name{font-weight:700;font-size:12.5px}
+  .chip{display:inline-flex;align-items:center;gap:4px;font-size:8.5px;font-weight:650;padding:2.5px 7px;border-radius:999px}
+  .chip.device{background:rgba(74,222,128,.13);color:var(--ok)}
+  .dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+
+  .bubble{max-width:78%;border-radius:14px;padding:8px 10px;font-size:11px;line-height:1.45}
+  .bubble.user{align-self:flex-end;background:rgba(53,196,220,.16);border:1px solid rgba(53,196,220,.28);border-bottom-right-radius:4px}
+  .bubble.ai{align-self:flex-start;background:var(--d-surface);border-bottom-left-radius:4px}
+
+  .toolchip{align-self:flex-start;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;
+    border:1px solid rgba(167,139,250,.4);color:var(--d-violet);border-radius:999px;padding:3.5px 9px}
+  .toolchip .t-ok{color:var(--ok)}
+  .toolchip .dur{color:var(--d-sec)}
+  .caret{display:inline-block;width:6px;height:11px;background:var(--d-violet);border-radius:1.5px;vertical-align:-1px;animation:blink 1.1s steps(2) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.caret{animation:none}}
+
+  .inputbar{display:flex;align-items:center;gap:8px;padding:8px 12px 6px}
+  .inputfield{flex:1;border-radius:999px;padding:7px 12px;font-size:10.5px;background:#1C2839;color:var(--d-sec)}
+  .sendbtn{width:26px;height:26px;border-radius:50%;background:#2AA8BE;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+
+  /* search screen */
+  .scope{display:flex;gap:6px;padding:0 16px 8px}
+  .scope span{font-size:9.5px;font-weight:650;padding:3px 10px;border-radius:999px;background:#1C2839;color:var(--d-sec)}
+  .scope span.on{background:var(--d-accent);color:#06202A}
+  .kind{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .khl{background:rgba(53,196,220,.15);color:var(--d-accent)}
+  .kvi{background:rgba(167,139,250,.15);color:var(--d-violet)}
+  .kok{background:rgba(74,222,128,.14);color:var(--ok)}
+  .kwa{background:rgba(251,146,60,.15);color:var(--warn)}
+  mark{background:rgba(53,196,220,.28);color:inherit;border-radius:2px;padding:0 1px}
+  .grouphead{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--d-sec);padding:4px 4px 0}
+
+  /* research screen */
+  .rep-title{font-size:14px;font-weight:750;letter-spacing:-.01em;line-height:1.25}
+  .src{display:flex;align-items:center;gap:6px;font-size:9.5px;color:var(--l-sec)}
+  .src i{width:6px;height:6px;border-radius:50%;background:var(--l-accent);flex:0 0 auto}
+  .prose{font-size:10.5px;color:#2A3648;line-height:1.5}
+  .prose h5{font-size:10.5px;margin:6px 0 2px;color:var(--l-label)}
+
+  /* ---------- spec sections ---------- */
+  .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+
+  .archmap{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .archrow{display:grid;grid-template-columns:120px 1fr;border-top:1px solid var(--line)}
+  .archrow:first-child{border-top:none}
+  .archrow>div{padding:13px 16px}
+  .archrow .k{font-weight:700;font-size:13.5px;background:var(--panel);display:flex;align-items:center;gap:8px}
+  .archrow .v{color:var(--muted);font-size:13.5px;background:transparent}
+  .archrow .v b{color:var(--ink);font-weight:600}
+  .archrow .k svg{flex:0 0 auto}
+
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+  .swatch{border-radius:12px;border:1px solid var(--line);overflow:hidden}
+  .sw-top{height:56px;display:flex}
+  .sw-top div{flex:1;display:flex;align-items:flex-end;padding:6px 8px;font-family:var(--mono);font-size:9.5px}
+  .sw-body{padding:9px 11px;background:var(--panel)}
+  .sw-name{font-weight:650;font-size:12.5px}
+  .sw-role{font-size:11px;color:var(--muted);margin-top:1px}
+
+  ul.hig{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px 26px;font-size:14px;color:var(--muted)}
+  ul.hig li{padding-left:24px;position:relative}
+  ul.hig li b{color:var(--ink);font-weight:600}
+  ul.hig li::before{content:"";position:absolute;left:0;top:5px;width:13px;height:13px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,#4FD8EE,#0E7C95)}
+
+  .note{border-left:2px solid var(--violet);padding:4px 0 4px 16px;color:var(--muted);font-size:14px;max-width:70ch}
+  .note b{color:var(--violet);font-weight:650}
+
+  footer{margin-top:80px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:20px}
+  footer code{font-family:var(--mono);color:var(--accent);font-size:12px}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">An AI Odyssey · iOS design proposal</div>
+    <h1>Aegean <span class="thin">— An AI Odyssey for iPhone</span></h1>
+    <p class="lede">Five tabs, one search field that finds everything, and a disciplined two-accent
+    system: <b>teal</b> is the interface, <b>violet</b> is the AI. The tab bar carries Chats,
+    Research, Search, Tasks, and Library — everything else lives one level in, exactly where
+    HIG says hierarchy belongs.</p>
+  </header>
+
+  <!-- ================= PHONES ================= -->
+  <div class="phones">
+
+    <!-- Phone 1: Chats (light) -->
+    <div class="phone-col">
+      <div class="phone"><div class="island"></div>
+        <div class="screen light">
+          <div class="statusbar"><span>9:41</span><span class="sb-right">
+            <svg width="15" height="10" viewBox="0 0 15 10" fill="#101828"><rect x="0" y="6" width="2.5" height="4" rx="0.8"/><rect x="4" y="4" width="2.5" height="6" rx="0.8"/><rect x="8" y="2" width="2.5" height="8" rx="0.8"/><rect x="12" y="0" width="2.5" height="10" rx="0.8"/></svg>
+            <svg width="21" height="10" viewBox="0 0 21 10"><rect x="0.5" y="0.5" width="17" height="9" rx="2.5" fill="none" stroke="#101828" stroke-opacity=".4"/><rect x="2" y="2" width="12" height="6" rx="1.2" fill="#101828"/><rect x="19" y="3" width="1.6" height="4" rx="0.8" fill="#101828" fill-opacity=".4"/></svg>
+          </span></div>
+          <div class="navbar"><span class="large-title">Chats</span><span class="avatar">JH</span></div>
+          <div class="searchpill">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="5" r="3.6"/><path d="M8 8l3 3"/></svg>
+            Search everything…
+          </div>
+          <div class="content">
+            <div class="card">
+              <div class="row-title">Trip planning <span class="badge agent">Agent</span><span class="row-meta">9:12</span></div>
+              <div class="row-sub">Saved 3 events to your calendar and drafted the…</div>
+            </div>
+            <div class="card">
+              <div class="row-title">Q3 budget review <span class="badge pin">Pinned</span><span class="row-meta">Yesterday</span></div>
+              <div class="row-sub">The variance comes from the June invoices — see…</div>
+            </div>
+            <div class="card">
+              <div class="row-title">Recipe ideas<span class="row-meta">Mon</span></div>
+              <div class="row-sub">Here are five weeknight dinners using what's in…</div>
+            </div>
+            <div class="card">
+              <div class="row-title">Swift concurrency notes<span class="row-meta">Jun 22</span></div>
+              <div class="row-sub">Actors isolate mutable state; a @MainActor class…</div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <span class="tab on"><svg width="17" height="16" viewBox="0 0 20 18" fill="currentColor"><path d="M8 1C4 1 1 3.6 1 6.8c0 1.8 1 3.4 2.5 4.5L3 14l3-1.6c.6.15 1.3.2 2 .2 4 0 7-2.6 7-5.8S12 1 8 1z"/><path d="M16.5 8.2c1.5.9 2.5 2.3 2.5 3.9 0 1.3-.7 2.5-1.8 3.3l.4 2-2.2-1.2c-.5.1-1 .2-1.5.2-1.9 0-3.6-.7-4.7-1.9 4.1-.4 7.3-3 7.3-6.3z" opacity=".55"/></svg>Chats</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="7.5"/><circle cx="8" cy="8" r="2.8"/><path d="M10.2 10.2l2.6 2.6"/></svg>Research</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7.5" cy="7.5" r="5"/><path d="M11.2 11.2l4.4 4.4"/><path d="M15 2l.7 1.8L17.5 4.5l-1.8.7L15 7l-.7-1.8L12.5 4.5l1.8-.7z" fill="currentColor" stroke="none"/></svg>Search</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5l1.5 1.5L6 3.5"/><path d="M9 5h7"/><path d="M2 11.5l1.5 1.5L6 10.5"/><path d="M9 12h7"/></svg>Tasks</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="currentColor"><rect x="2" y="2" width="3.4" height="14" rx="0.8"/><rect x="7" y="2" width="3.4" height="14" rx="0.8" opacity=".75"/><path d="M11.8 3.2l3.3-.9 3 13.5-3.3.9z" opacity=".5"/></svg>Library</span>
+          </div>
+        </div>
+      </div>
+      <div class="phone-cap"><b>Chats — root list, light</b>Large title, global search pill, violet Agent badge. Compose sits top-right in the real toolbar.</div>
+    </div>
+
+    <!-- Phone 2: Agent chat (dark) -->
+    <div class="phone-col">
+      <div class="phone"><div class="island"></div>
+        <div class="screen dark">
+          <div class="statusbar"><span>9:41</span><span class="sb-right">
+            <svg width="15" height="10" viewBox="0 0 15 10" fill="#E9EEF5"><rect x="0" y="6" width="2.5" height="4" rx="0.8"/><rect x="4" y="4" width="2.5" height="6" rx="0.8"/><rect x="8" y="2" width="2.5" height="8" rx="0.8"/><rect x="12" y="0" width="2.5" height="10" rx="0.8"/></svg>
+            <svg width="21" height="10" viewBox="0 0 21 10"><rect x="0.5" y="0.5" width="17" height="9" rx="2.5" fill="none" stroke="#E9EEF5" stroke-opacity=".4"/><rect x="2" y="2" width="12" height="6" rx="1.2" fill="#E9EEF5"/><rect x="19" y="3" width="1.6" height="4" rx="0.8" fill="#E9EEF5" fill-opacity=".4"/></svg>
+          </span></div>
+          <div class="chat-nav">
+            <span class="back">‹</span>
+            <div>
+              <div class="name">Trip planning</div>
+              <span class="chip device"><span class="dot"></span>On-device · Llama 3.2 3B</span>
+            </div>
+          </div>
+          <div class="content" style="padding-top:10px;gap:7px">
+            <div class="bubble user">Find my notes about Kyoto and block out the temple visits on my calendar.</div>
+            <div class="toolchip"><span class="t-ok">✓</span>search_memory<span class="dur">0.3s</span></div>
+            <div class="toolchip"><span class="t-ok">✓</span>read_note · “Kyoto itinerary”<span class="dur">0.4s</span></div>
+            <div class="toolchip"><span class="t-ok">✓</span>list_calendar_events<span class="dur">0.8s</span></div>
+            <div class="bubble ai">Found your Kyoto itinerary note. You have mornings free on Oct 14–15, so I’m proposing:
+              <br><br>• <b>Oct 14, 9:00</b> — Fushimi Inari<br>• <b>Oct 15, 8:30</b> — Kinkaku-ji &amp; Ryoan-ji</div>
+            <div class="toolchip"><span style="color:var(--d-violet)">⚙</span>create_calendar_event<span class="dur">running</span></div>
+            <div class="bubble ai">Adding both to your calendar<span class="caret"></span></div>
+          </div>
+          <div class="inputbar">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#93A1B4" stroke-width="1.6"><path d="M8 3v10M3 8h10"/></svg>
+            <span class="inputfield">Message</span>
+            <svg width="13" height="16" viewBox="0 0 12 16" fill="none" stroke="#93A1B4" stroke-width="1.5"><rect x="3.5" y="1" width="5" height="8.5" rx="2.5"/><path d="M1.5 7.5a4.5 4.5 0 009 0M6 12v3"/></svg>
+            <span class="sendbtn"><svg width="10" height="10" viewBox="0 0 10 10" fill="#04222B"><rect x="2.5" y="2.5" width="5" height="5" rx="1"/></svg></span>
+          </div>
+          <div style="height:14px"></div>
+        </div>
+      </div>
+      <div class="phone-cap"><b>Agent chat — dark</b>Tool chips in violet (the AI’s color), on-device privacy chip in green, Stop button replaces send while streaming.</div>
+    </div>
+
+    <!-- Phone 3: Search (dark) -->
+    <div class="phone-col">
+      <div class="phone"><div class="island"></div>
+        <div class="screen dark">
+          <div class="statusbar"><span>9:41</span><span class="sb-right">
+            <svg width="15" height="10" viewBox="0 0 15 10" fill="#E9EEF5"><rect x="0" y="6" width="2.5" height="4" rx="0.8"/><rect x="4" y="4" width="2.5" height="6" rx="0.8"/><rect x="8" y="2" width="2.5" height="8" rx="0.8"/><rect x="12" y="0" width="2.5" height="10" rx="0.8"/></svg>
+            <svg width="21" height="10" viewBox="0 0 21 10"><rect x="0.5" y="0.5" width="17" height="9" rx="2.5" fill="none" stroke="#E9EEF5" stroke-opacity=".4"/><rect x="2" y="2" width="12" height="6" rx="1.2" fill="#E9EEF5"/><rect x="19" y="3" width="1.6" height="4" rx="0.8" fill="#E9EEF5" fill-opacity=".4"/></svg>
+          </span></div>
+          <div class="navbar"><span class="large-title">Search</span><span class="avatar">JH</span></div>
+          <div class="searchpill" style="color:var(--d-label)">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="5" r="3.6"/><path d="M8 8l3 3"/></svg>
+            budget<span style="margin-left:auto;color:var(--d-accent);font-weight:600">Cancel</span>
+          </div>
+          <div class="scope"><span class="on">All</span><span>Docs</span><span>Mail</span><span>Chats</span><span>More</span></div>
+          <div class="content">
+            <div class="grouphead">Documents</div>
+            <div class="card" style="display:flex;gap:8px;align-items:center">
+              <span class="kind khl"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 1h4.5L10 3.5V11H3z"/><path d="M7.5 1v2.5H10"/></svg></span>
+              <div><div class="row-title">Q3 <mark>Budget</mark> Draft</div>
+              <div class="row-sub">…the <mark>budget</mark> variance narrows to 4% if we…</div></div>
+              <span class="row-meta">Jun 12</span>
+            </div>
+            <div class="grouphead">Email</div>
+            <div class="card" style="display:flex;gap:8px;align-items:center">
+              <span class="kind kwa"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="2.5" width="10" height="7" rx="1.2"/><path d="M1.5 3.5L6 7l4.5-3.5"/></svg></span>
+              <div><div class="row-title">Re: Quarterly <mark>budget</mark></div>
+              <div class="row-sub">Dana — “attached the revised <mark>budget</mark> sheet…”</div></div>
+              <span class="row-meta">Jun 10</span>
+            </div>
+            <div class="grouphead">Chats</div>
+            <div class="card" style="display:flex;gap:8px;align-items:center">
+              <span class="kind kvi"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2h8v6H5L2.5 10z"/></svg></span>
+              <div><div class="row-title">Q3 <mark>budget</mark> review</div>
+              <div class="row-sub">“…we discussed moving 12k of the <mark>budget</mark> into…”</div></div>
+              <span class="row-meta">Yesterday</span>
+            </div>
+            <div class="grouphead">Memories</div>
+            <div class="card" style="display:flex;gap:8px;align-items:center">
+              <span class="kind kok"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="6" r="4.5"/><circle cx="6" cy="6" r="1.6"/></svg></span>
+              <div><div class="row-title">Preference</div>
+              <div class="row-sub">Prefers <mark>budget</mark> figures rounded to the nearest $1k</div></div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <span class="tab"><svg width="17" height="16" viewBox="0 0 20 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1C4 1 1 3.6 1 6.8c0 1.8 1 3.4 2.5 4.5L3 14l3-1.6c.6.15 1.3.2 2 .2 4 0 7-2.6 7-5.8S12 1 8 1z"/></svg>Chats</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="7.5"/><circle cx="8" cy="8" r="2.8"/><path d="M10.2 10.2l2.6 2.6"/></svg>Research</span>
+            <span class="tab on"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7.5" cy="7.5" r="5"/><path d="M11.2 11.2l4.4 4.4"/><path d="M15 2l.7 1.8L17.5 4.5l-1.8.7L15 7l-.7-1.8L12.5 4.5l1.8-.7z" fill="currentColor" stroke="none"/></svg>Search</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5l1.5 1.5L6 3.5"/><path d="M9 5h7"/><path d="M2 11.5l1.5 1.5L6 10.5"/><path d="M9 12h7"/></svg>Tasks</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="3.4" height="14" rx="0.8"/><rect x="7" y="2" width="3.4" height="14" rx="0.8"/><path d="M11.8 3.2l3.3-.9 3 13.5-3.3.9z"/></svg>Library</span>
+          </div>
+        </div>
+      </div>
+      <div class="phone-cap"><b>Unified search — dark</b>One field over documents, mail, chats, tasks, memories. The same <code style="font-family:var(--mono);font-size:11px">UnifiedSearchService</code> the agent calls (audit §8).</div>
+    </div>
+
+    <!-- Phone 4: Research (light) -->
+    <div class="phone-col">
+      <div class="phone"><div class="island"></div>
+        <div class="screen light">
+          <div class="statusbar"><span>9:41</span><span class="sb-right">
+            <svg width="15" height="10" viewBox="0 0 15 10" fill="#101828"><rect x="0" y="6" width="2.5" height="4" rx="0.8"/><rect x="4" y="4" width="2.5" height="6" rx="0.8"/><rect x="8" y="2" width="2.5" height="8" rx="0.8"/><rect x="12" y="0" width="2.5" height="10" rx="0.8"/></svg>
+            <svg width="21" height="10" viewBox="0 0 21 10"><rect x="0.5" y="0.5" width="17" height="9" rx="2.5" fill="none" stroke="#101828" stroke-opacity=".4"/><rect x="2" y="2" width="12" height="6" rx="1.2" fill="#101828"/><rect x="19" y="3" width="1.6" height="4" rx="0.8" fill="#101828" fill-opacity=".4"/></svg>
+          </span></div>
+          <div class="chat-nav" style="border-color:var(--l-sep)">
+            <span class="back" style="color:var(--l-accent)">‹</span>
+            <div><div class="name" style="color:var(--l-label)">Research</div></div>
+          </div>
+          <div class="content" style="padding-top:10px">
+            <div class="card">
+              <div class="rep-title">Heat-pump water heaters: 2026 efficiency &amp; rebates</div>
+              <div class="row-sub" style="margin-top:3px">Jul 1 · 5 sources · GPT-4o mini</div>
+            </div>
+            <div class="card prose">
+              <h5>Key findings</h5>
+              • UEF ratings above 3.5 are now common in 50-gal units<br>
+              • Federal credit remains 30% up to $2,000 (25C)<br>
+              • State rebates stack in 31 states this year
+              <h5>Recommendation</h5>
+              A 50-gal hybrid unit pays back in ≈4.2 years at current rates…
+            </div>
+            <div class="card">
+              <div class="row-title" style="font-size:10.5px;margin-bottom:5px">Sources</div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <span class="src"><i></i>ENERGY STAR — Water heater criteria v5.0</span>
+                <span class="src"><i></i>IRS — Energy Efficient Home Improvement Credit</span>
+                <span class="src"><i></i>NEEP — ccASHP product list 2026</span>
+              </div>
+            </div>
+            <div class="card" style="display:flex;align-items:center;gap:6px;color:var(--l-sec);font-size:10.5px">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
+              Ask a follow-up…
+            </div>
+          </div>
+          <div class="tabbar">
+            <span class="tab"><svg width="17" height="16" viewBox="0 0 20 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1C4 1 1 3.6 1 6.8c0 1.8 1 3.4 2.5 4.5L3 14l3-1.6c.6.15 1.3.2 2 .2 4 0 7-2.6 7-5.8S12 1 8 1z"/></svg>Chats</span>
+            <span class="tab on"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="9" r="7.5"/><circle cx="8" cy="8" r="2.8"/><path d="M10.2 10.2l2.6 2.6"/></svg>Research</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7.5" cy="7.5" r="5"/><path d="M11.2 11.2l4.4 4.4"/><path d="M15 2l.7 1.8L17.5 4.5l-1.8.7L15 7l-.7-1.8L12.5 4.5l1.8-.7z" fill="currentColor" stroke="none"/></svg>Search</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5l1.5 1.5L6 3.5"/><path d="M9 5h7"/><path d="M2 11.5l1.5 1.5L6 10.5"/><path d="M9 12h7"/></svg>Tasks</span>
+            <span class="tab"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="3.4" height="14" rx="0.8"/><rect x="7" y="2" width="3.4" height="14" rx="0.8"/><path d="M11.8 3.2l3.3-.9 3 13.5-3.3.9z"/></svg>Library</span>
+          </div>
+        </div>
+      </div>
+      <div class="phone-cap"><b>Research report — light</b>Cited report card, sources block, inline follow-up field continuing the thread.</div>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- ================= ARCHITECTURE ================= -->
+  <section>
+    <h2>Navigation architecture — 11 sections, 5 tabs</h2>
+    <div class="archmap">
+      <div class="archrow"><div class="k"><svg width="15" height="14" viewBox="0 0 20 18" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M8 1C4 1 1 3.6 1 6.8c0 1.8 1 3.4 2.5 4.5L3 14l3-1.6c.6.15 1.3.2 2 .2 4 0 7-2.6 7-5.8S12 1 8 1z"/></svg>Chats</div><div class="v">Sessions → chat detail. The tool-calling agent is always on.</div></div>
+      <div class="archrow"><div class="k"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="9" cy="9" r="7.5"/><circle cx="8" cy="8" r="2.8"/><path d="M10.2 10.2l2.6 2.6"/></svg>Research</div><div class="v">Reports list → cited report + follow-up thread. Keeps its iPad symbol for continuity.</div></div>
+      <div class="archrow"><div class="k"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.6"><circle cx="7.5" cy="7.5" r="5"/><path d="M11.2 11.2l4.4 4.4"/></svg>Search</div><div class="v"><b>Unified search over everything</b> — documents, notes, mail, chats, tasks, research, memories, calendar. The user-facing face of the agent's own retrieval tool.</div></div>
+      <div class="archrow"><div class="k"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M2 4.5l1.5 1.5L6 3.5"/><path d="M9 5h7"/><path d="M2 11.5l1.5 1.5L6 10.5"/><path d="M9 12h7"/></svg>Tasks</div><div class="v">Scheduled tasks + agent queue in one segmented view; task results link to their artifacts.</div></div>
+      <div class="archrow"><div class="k"><svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="var(--accent)" stroke-width="1.4"><rect x="2" y="2" width="3.4" height="14" rx="0.8"/><rect x="7" y="2" width="3.4" height="14" rx="0.8"/><path d="M11.8 3.2l3.3-.9 3 13.5-3.3.9z"/></svg>Library</div><div class="v">Grid of the rest: <b>Documents · Notes · Email · Calendar · Gallery · Memory · Compare</b>. Long-press a tile → “Add to Tab Bar” swaps personal priorities in.</div></div>
+      <div class="archrow"><div class="k" style="color:var(--muted)">Settings</div><div class="v">Profile avatar, top-trailing on every root (Fitness/App Store pattern) — no tab spent.</div></div>
+    </div>
+    <p class="note" style="margin-top:18px"><b>One rule the whole design hangs on:</b> teal is the interface, violet is the AI. Any violet on screen means the model is present or acting — badges, tool chips, streaming caret, memory glyphs. Users learn where the intelligence is without reading a word.</p>
+  </section>
+
+  <!-- ================= COLOR ================= -->
+  <section>
+    <h2>Aegean color system — light / dark pairs, AA-checked</h2>
+    <div class="swatches">
+      <div class="swatch"><div class="sw-top"><div style="background:#007A93;color:#fff">#007A93</div><div style="background:#35C4DC;color:#06202A">#35C4DC</div></div>
+        <div class="sw-body"><div class="sw-name">accent</div><div class="sw-role">Tint — links, active tab, selection, user bubbles</div></div></div>
+      <div class="swatch"><div class="sw-top"><div style="background:#0094AD;color:#fff">#0094AD</div><div style="background:#2AA8BE;color:#06202A">#2AA8BE</div></div>
+        <div class="sw-body"><div class="sw-name">accentFill</div><div class="sw-role">Filled controls — send, compose, primary buttons</div></div></div>
+      <div class="swatch"><div class="sw-top"><div style="background:#6D4AE0;color:#fff">#6D4AE0</div><div style="background:#A78BFA;color:#141024">#A78BFA</div></div>
+        <div class="sw-body"><div class="sw-name">aiViolet</div><div class="sw-role">Reserved: agent badges, tool chips, streaming caret</div></div></div>
+      <div class="swatch"><div class="sw-top"><div style="background:#F5F7FA;color:#5B6B7F">#F5F7FA</div><div style="background:#0D1420;color:#93A1B4">#0D1420</div></div>
+        <div class="sw-body"><div class="sw-name">bg</div><div class="sw-role">Grouped background — cool-biased, never pure grey/black</div></div></div>
+      <div class="swatch"><div class="sw-top"><div style="background:#FFFFFF;color:#5B6B7F;border-right:1px solid #E3E8EF">#FFFFFF</div><div style="background:#16202F;color:#93A1B4">#16202F</div></div>
+        <div class="sw-body"><div class="sw-name">surface</div><div class="sw-role">Cards, cells, bars — dark surface is elevated navy</div></div></div>
+      <div class="swatch"><div class="sw-top"><div style="background:#1F8A54;color:#fff">#1F8A54</div><div style="background:#4ADE80;color:#052613">#4ADE80</div></div>
+        <div class="sw-body"><div class="sw-name">success</div><div class="sw-role">On-device privacy chip, task done, sync healthy</div></div></div>
+    </div>
+    <p class="note" style="margin-top:18px">Ships as asset-catalog colors with light/dark variants, added as an <b>aegean</b> case to the existing <code style="font-family:var(--mono);font-size:12px;color:var(--accent)">AppAccent</code> palette system — the current seven accents remain as user choices, so iPad and Mac inherit the identity for free.</p>
+  </section>
+
+  <!-- ================= HIG ================= -->
+  <section>
+    <h2>HIG compliance, by construction</h2>
+    <ul class="hig">
+      <li><b>Five tabs max</b>, never hidden; re-tap pops to root; independent NavigationStack per tab</li>
+      <li><b>Dynamic Type</b> end-to-end — system text styles only, tested at accessibility sizes</li>
+      <li><b>44 pt hit targets</b> on chips, chevrons, and every input-bar control</li>
+      <li><b>AA contrast</b> both modes; color never the only signal — states pair color with symbol + label</li>
+      <li><b>Standard gestures</b>: swipe-back everywhere, pull-to-refresh on syncing lists, row swipe actions</li>
+      <li><b>Reduce Motion / Transparency</b> honored — shimmer→crossfade, materials→solid surfaces</li>
+      <li><b>Haptics with restraint</b>: success on completion, light impact on chip expand, none while streaming</li>
+      <li><b>Dynamic Island &amp; landscape</b> handled by standard safe-area layout — no custom insets</li>
+    </ul>
+  </section>
+
+  <footer>
+    Full spec: <code>AnAIOdyssey/docs/IPHONE_DESIGN.md</code> · Companion audit: <code>docs/AI_WORKFLOW_AUDIT.md</code> (§8 unified search powers the Search tab).
+    The project already targets iPhone (<code>TARGETED_DEVICE_FAMILY "1,2"</code>) — this design is a size-class branch away.
+  </footer>
+</div>

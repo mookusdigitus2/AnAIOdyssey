@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "1430"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "18F371BA26C84585204EE01A"
+               BuildableName = "An AI Odyssey.app"
+               BlueprintName = "AnAIOdyssey"
+               ReferencedContainer = "container:AnAIOdyssey.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "18F371BA26C84585204EE01A"
+            BuildableName = "An AI Odyssey.app"
+            BlueprintName = "AnAIOdyssey"
+            ReferencedContainer = "container:AnAIOdyssey.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8B1EA2D546871C6014204264"
+               BuildableName = "AnAIOdysseyCoreTests.xctest"
+               BlueprintName = "AnAIOdysseyCoreTests"
+               ReferencedContainer = "container:AnAIOdyssey.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E798533A3373164E0EF398AF"
+               BuildableName = "AnAIOdysseyAITests.xctest"
+               BlueprintName = "AnAIOdysseyAITests"
+               ReferencedContainer = "container:AnAIOdyssey.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8503F54B08BAC76BFC78958D"
+               BuildableName = "AnAIOdysseyMailTests.xctest"
+               BlueprintName = "AnAIOdysseyMailTests"
+               ReferencedContainer = "container:AnAIOdyssey.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E58DA75FE86F275FDD8C9DCC"
+               BuildableName = "AnAIOdysseyIntegrationTests.xctest"
+               BlueprintName = "AnAIOdysseyIntegrationTests"
+               ReferencedContainer = "container:AnAIOdyssey.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D33D7112F668B1391CD41376"
+               BuildableName = "AnAIOdysseyUITests.xctest"
+               BlueprintName = "AnAIOdysseyUITests"
+               ReferencedContainer = "container:AnAIOdyssey.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "18F371BA26C84585204EE01A"
+            BuildableName = "An AI Odyssey.app"
+            BlueprintName = "AnAIOdyssey"
+            ReferencedContainer = "container:AnAIOdyssey.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "18F371BA26C84585204EE01A"
+            BuildableName = "An AI Odyssey.app"
+            BlueprintName = "AnAIOdyssey"
+            ReferencedContainer = "container:AnAIOdyssey.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

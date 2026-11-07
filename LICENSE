@@ -1,0 +1,30 @@
+This file replaces the Apache License 2.0 text that the empty GitHub
+repository placed at this path. That Apache text was a scaffold. It is not
+the license of An AI Odyssey, of AIConnect, of AIModelOptions, or of
+AIConnectVoice.
+
+This repository is not one work under one license. This file does not restate
+those grants and does not change them. The license for each component is the
+file named here.
+
+Component licensing map
+
+| Path | What it is | License file | SPDX | Copyright line in that file |
+|---|---|---|---|---|
+| AnAIOdyssey/ | The app and its local packages (AnAIOdysseyCore, AnAIOdysseyAI, AnAIOdysseyMail, AnAIOdysseyUI) | AnAIOdyssey/LICENSE and the additional permission repeated in AnAIOdyssey/LICENSE.appstore | AGPL-3.0-or-later | Copyright (C) 2026 Grey Matter Ideations |
+| AIConnect/AIConnect/ | AIConnect and AIConnectUI Swift package | AIConnect/LICENSE | MIT | Copyright (c) 2026 Mark Hanson |
+| AIConnect/AIModelOptions/ | AIModelOptions Swift package (this is the package; there is no second copy at the repository root) | AIConnect/AIModelOptions/LICENSE | MIT | Copyright (c) 2026 Mark Hanson |
+| AIConnectVoice/ | Voice engine Swift package | AIConnectVoice/LICENSE | MIT | Copyright (c) 2026 Mark Hanson |
+| AnAIOdyssey/ThirdPartyNotices/ and AnAIOdyssey/THIRD_PARTY_NOTICES.md | Third-party package notices, including Odysseus v1.0 at commit e5c99a5e | Those files | MIT or Apache-2.0, per component | The notice in each file |
+
+The app license, the section 7 store permission, and the trademark sentence are the live wording. They are not paraphrased in AnAIOdyssey/LICENSE.
+
+Ownership is inconsistent in the sources these files were taken from, and these documents do not invent a single owner:
+
+- AnAIOdyssey/LICENSE and AppBranding.companyName say Grey Matter Ideations.
+- The MIT licenses for AIConnect, AIModelOptions, and AIConnectVoice say Mark Hanson. That is the copyright line already written on the staged AIConnect and AIConnectVoice licenses, which the staged notices also apply to AIModelOptions. AIModelOptions had no license file of its own; its new file uses that existing MIT text.
+- Nothing here merges those names or adds a copyright assignment.
+
+Third-party Apache-2.0 texts (metal-cpp inside mlx-swift, and the Apple and Hugging Face Swift packages listed in the notices) stay under those notices. They are not this repository's scaffold Apache license, and the scaffold is not their grant either.
+
+Adapted Odysseus text stays under the MIT license quoted in AnAIOdyssey/ACKNOWLEDGMENTS.md (Copyright (c) 2025 Odysseus Contributors, Odysseus commit e5c99a5e).

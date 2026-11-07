@@ -1,0 +1,21 @@
+An AI Odyssey: additional permission for app store distribution
+
+The operative additional permission is the text below. It is copied unchanged from LICENSE in this folder (Copyright (C) 2026 Grey Matter Ideations). This file repeats it because the package manifests point here. The previous draft heading, and the previous draft wording that named a different copyright holder, are withdrawn. This note adds no permission.
+
+Additional permission under GNU AGPL version 3 section 7
+
+As an additional permission under section 7 of the GNU Affero General Public
+License, version 3, Grey Matter Ideations, as copyright holder, grants you
+permission to convey this program, or any covered work based on it, through
+Apple's App Store, Mac App Store and TestFlight, and Google Play (each a
+"Distribution Service"), even though the terms of service, usage rules, digital
+rights management, or other restrictions of a Distribution Service may impose
+further restrictions on recipients that would otherwise be incompatible with
+section 10 of the license, provided that the Corresponding Source of the work
+conveyed remains available under the terms of this license and you otherwise
+comply with it. This permission does not grant any rights in the name or icon of
+An AI Odyssey or any other trademark of Grey Matter Ideations.
+
+If you modify this program, you may extend this exception to your version, but
+you are not obligated to do so. If you do not wish to do so, delete this
+exception statement from your version.

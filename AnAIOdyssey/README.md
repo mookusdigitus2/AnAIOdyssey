@@ -129,6 +129,17 @@ Settings > About > Acknowledgements:
 |---|---|
 | ![Acknowledgements on iPhone](docs/screenshots/acknowledgements-iphone.png) | ![Acknowledgements on iPad](docs/screenshots/acknowledgements-ipad.png) |
 
+Settings, AI Models, and Voice on iPhone. The AI Models screen shows Apple On-Device and an empty remote connection (`https://api.openai.com/v1`, no API key). Voice is the System provider with the ElevenLabs key left blank.
+
+| Settings | AI Models | Voice |
+|---|---|---|
+| ![Settings on iPhone](docs/screenshots/settings-iphone.png) | ![AI Models on iPhone](docs/screenshots/ai-models-iphone.png) | ![Voice on iPhone](docs/screenshots/voice-iphone.png) |
+
+Library on iPhone:
+
+| ![Library on iPhone](docs/screenshots/library-iphone.png) |
+|---|
+
 ## License
 
 Copyright (C) 2026 Grey Matter Ideations. The operative grant is [LICENSE](LICENSE), copied from the live app license, including its section 7 store permission and trademark sentence. [LICENSE.appstore](LICENSE.appstore) repeats that same permission and does not add another one. The draft that named a different copyright holder is withdrawn.

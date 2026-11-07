@@ -150,6 +150,7 @@ struct WorkspaceVoicePicker: View {
             if showsCredentialFields {
                 SecureField("ElevenLabs API Key", text: $agentRegistrySettings.elevenLabsAPIKey)
                     .workspaceSettingsField()
+                    .accessibilityIdentifier("elevenlabs-api-key")
             }
     }
 

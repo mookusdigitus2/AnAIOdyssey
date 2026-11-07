@@ -93,9 +93,15 @@ final class AppModel: ObservableObject {
     init() {
         // Step 1: ensure the model cache exists, then hydrate UserDefaults from
         // iCloud before any settings object reads it, so Mac and iPad share the
-        // same configuration on launch.
+        // same configuration on launch. The config-screenshot UI test skips
+        // that hydrate and starts from empty local defaults so captured screens
+        // cannot include a signed-in account, key, or team.
         AnAIOdysseyAI.ensureModelCacheDirectoryExists()
-        CloudDefaultsSync.shared.start()
+        if ConfigScreenshotIsolation.isEnabled {
+            ConfigScreenshotIsolation.prepare()
+        } else {
+            CloudDefaultsSync.shared.start()
+        }
         ChatWebSearchEngine.migrateStoredEngine()
 
         // Step 2: build settings/services that have no persistence dependency.
